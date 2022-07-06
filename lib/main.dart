@@ -2,6 +2,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:riverpod_demo/change_notifier/todo_list_page.dart';
 import 'package:riverpod_demo/future/todo_future_page.dart';
 // Project
 import 'change_notifier/counter_page.dart';
@@ -136,6 +137,24 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: const Padding(
                   padding: EdgeInsets.all(12.0),
                   child: Text('FutureProvider'),
+                ),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const TodoListPage(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Text('ChangeNotifier - Future'),
                 ),
               ),
             ],
