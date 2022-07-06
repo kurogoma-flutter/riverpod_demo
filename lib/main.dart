@@ -8,6 +8,23 @@ import 'change_notifier/counter_page.dart';
 import 'firebase_options.dart';
 import 'stream/todo_stream_page.dart';
 
+// primarySwatchをカスタムしたい場合
+const MaterialColor customSwatch = MaterialColor(
+  0xFF3300FF,
+  <int, Color>{
+    50: Color(0xFF3300FF),
+    100: Color(0xFF3300FF),
+    200: Color(0xFF3300FF),
+    300: Color(0xFF3300FF),
+    400: Color(0xFF3300FF),
+    500: Color(0xFF3300FF),
+    600: Color(0xFF3300FF),
+    700: Color(0xFF3300FF),
+    800: Color(0xFF3300FF),
+    900: Color(0xFF3300FF),
+  },
+);
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
@@ -25,7 +42,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: customSwatch,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -44,69 +61,85 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
+
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 212, 252, 255),
       appBar: AppBar(
         title: const Text('Riverpodサンプル'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const CounterPage(),
-                  ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+      body: Padding(
+        padding: EdgeInsets.symmetric(vertical: size.height * 0.15), // 上下30%の余白
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              SizedBox(
+                height: size.height * 0.12,
+                width: size.height * 0.12, // 高さと合わせるため
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(50),
+                  child: Image.network(
+                      'https://user-images.githubusercontent.com/67848399/177473238-cfe6333a-d8b0-4385-94d0-d5be87604394.png',
+                      fit: BoxFit.cover),
                 ),
               ),
-              child: const Padding(
-                padding: EdgeInsets.all(12.0),
-                child: Text('ChangeNotifierProvider'),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const TodoStreamPage(),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const CounterPage(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Text('ChangeNotifierProvider'),
                 ),
               ),
-              child: const Padding(
-                padding: EdgeInsets.all(12.0),
-                child: Text('StreamProvider'),
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => const TodoFuturePage(),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const TodoStreamPage(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
                   ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Text('StreamProvider'),
                 ),
               ),
-              child: const Padding(
-                padding: EdgeInsets.all(12.0),
-                child: Text('FutureProvider'),
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const TodoFuturePage(),
+                    ),
+                  );
+                },
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.all(12.0),
+                  child: Text('FutureProvider'),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
