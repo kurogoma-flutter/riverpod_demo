@@ -66,9 +66,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 212, 252, 255),
-      appBar: AppBar(
-        title: const Text('Riverpodサンプル'),
-      ),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: size.height * 0.15), // 上下30%の余白
         child: Center(
@@ -79,10 +76,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: size.height * 0.12,
                 width: size.height * 0.12, // 高さと合わせるため
                 child: ClipRRect(
-                  borderRadius: BorderRadius.circular(50),
+                  borderRadius: BorderRadius.circular(20),
                   child: Image.network(
-                      'https://user-images.githubusercontent.com/67848399/177473238-cfe6333a-d8b0-4385-94d0-d5be87604394.png',
-                      fit: BoxFit.cover),
+                    'https://user-images.githubusercontent.com/67848399/177473238-cfe6333a-d8b0-4385-94d0-d5be87604394.png',
+                    errorBuilder: (c, o, s) {
+                      return const Icon(Icons.person);
+                    },
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
               ElevatedButton(
