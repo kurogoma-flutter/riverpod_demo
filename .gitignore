@@ -1,0 +1,16 @@
+ios/Pods
+ios/Runner
+ios/.symlinks
+ios/Runner.xcodeproj
+ios/Runner.xcworkspace
+ios/Flutter
+
+macos
+linux
+windows
+
+build/
+
+.dart_tool
+
+lib/firebase_options.dart
