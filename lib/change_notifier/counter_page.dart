@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/material.dart';
 
-import 'todo_page_view_model.dart';
+import 'counter_page_view_model.dart';
 
 class CounterPage extends ConsumerWidget {
   const CounterPage({Key? key}) : super(key: key);
@@ -9,7 +9,7 @@ class CounterPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     Size size = MediaQuery.of(context).size;
-    final viewModel = ref.watch(todoPageViewModel);
+    final viewModel = ref.watch(counterPageViewModel);
 
     return Scaffold(
       appBar: AppBar(
